@@ -12,27 +12,28 @@ h1>
 <!-- conversão -->
     <form action="/converter" method="post">
         Ingrediente:
-        <select id=ingrediente>
-            <option value="flour">Flour</option> 
+        <select name="ingre">
+            <option value="flour">flour</option> 
             <option value="valor2">Valor 2</option>
             <option value="valor3">Valor 3</option>
         </select>
         <p>Converter:</p>
-        <input type="text" name="valor" />
+        <input type="text" name="valor" id=valor />
         <select name="medicao_antes">
-            <option value="cups">Cups</option> 
+            <option value="cups">cups</option> 
             <option value="valor2">Valor 2</option>
             <option value="valor3">Valor 3</option>
         </select>
         
         <p>para :</p>
         <select name="medicao_depois">
-            <option value="gramas">grams</option> 
+            <option value="grams">grams</option> 
             <option value="valor2">Valor 2</option>
             <option value="valor3">Valor 3</option>
         </select>
-        <p><input type="submit" value="Converter" /></p>
+        <button >Converter </button>
     </form>
-
+    
+        
 </body>
 </html>
