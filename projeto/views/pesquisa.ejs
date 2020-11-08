@@ -2,11 +2,37 @@
 <html lang="en">
 <head></head>
 <body>
-    <h1 class="text-center title-1"> Cadastro de Usu&aacute;rio </
+    <h1 class="text-center title-1"> API </
 h1>
-    <form action="/pesquisar" method="post">
+<!-- busca -->
+    <form action="/buscar" method="post">
         <p>Busca:<input type="text" name="pesquisa" /></p>
         <p><input type="submit" value="Pesquisar" /></p>
     </form>
+<!-- conversão -->
+    <form action="/converter" method="post">
+        Ingrediente:
+        <select id=ingrediente>
+            <option value="flour">Flour</option> 
+            <option value="valor2">Valor 2</option>
+            <option value="valor3">Valor 3</option>
+        </select>
+        <p>Converter:</p>
+        <input type="text" name="valor" />
+        <select name="medicao_antes">
+            <option value="cups">Cups</option> 
+            <option value="valor2">Valor 2</option>
+            <option value="valor3">Valor 3</option>
+        </select>
+        
+        <p>para :</p>
+        <select name="medicao_depois">
+            <option value="gramas">grams</option> 
+            <option value="valor2">Valor 2</option>
+            <option value="valor3">Valor 3</option>
+        </select>
+        <p><input type="submit" value="Converter" /></p>
+    </form>
+
 </body>
 </html>

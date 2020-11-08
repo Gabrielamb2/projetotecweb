@@ -19,31 +19,38 @@ var reqi = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapida
 //   });
 // });
 
-/* GET New User page. */
+/* GET Resposta rapida CALCULAR. */
 router.get('/', function(req, res) {
   res.render('pesquisa', { title: 'Pesquisar' });
   });
 
-  /* POST to Add User Service */
-router.post('/pesquisar', function (req, res) {
+  /* POST  Resposta rapida CALCULAR*/
+router.post('/buscar', function (req, res) {
   var pesquisa = req.body.pesquisa;
-  console.log(pesquisa);
-  reqi.query({
-	"q": pesquisa
-});
-reqi.headers({
-	"x-rapidapi-key": "a189d94715msh94688240afe7d21p18a442jsn5712d79e456d",
-	"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-	"useQueryString": true
-});
-reqi.end(function (res) {
-	if (res.error) throw new Error(res.error);
-  var resposta = res.body.answer
-  console.log(res.body.answer);
+//   console.log(pesquisa);
+//   reqi.query({
+// 	"q": pesquisa
+// });
+// reqi.headers({
+// 	"x-rapidapi-key": "a189d94715msh94688240afe7d21p18a442jsn5712d79e456d",
+// 	"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+// 	"useQueryString": true
+// });
+// reqi.end(function (res) {
+// 	if (res.error) throw new Error(res.error);
+//   var resposta = res.body.answer
+//   console.log(res.body.answer);
   // res.render('resultado', { resposta: resposta });
-});
+// });
 
+
+  });
   
+    /* POST Converter valor CALCULAR*/
+  router.post('/converter', function (req, res) {
+    const rootElement = document.getElementById("ingrediente");
+    // var ingrediente = req.body.ingrediente;
+    console.log(rootElement);
   });
 
 module.exports = router;
