@@ -110,4 +110,32 @@ router.post('/filtrar/receitas/nutrientes', function(req, res) {
 
   });
 
+// obtenha substitutos para ingredientes 
+router.post('/ingredientes', function(req, res) {
+  res.render('substituto_ingredientes');
+  });
+
+router.post('/substituto/ingredientes', function(req, res) {
+  var ingrediente  = req.body.ingre;
+  var unirest = require("unirest");
+
+  var req = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/substitutes");
+
+  req.query({
+    "ingredientName": ingrediente
+  });
+
+  req.headers({
+    "x-rapidapi-key": "a189d94715msh94688240afe7d21p18a442jsn5712d79e456d",
+    "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    "useQueryString": true
+  });
+
+
+  req.end(function (res) {
+    if (res.error) throw new Error(res.error);
+
+    console.log(res.body);
+  });
+  });
 module.exports = router;
