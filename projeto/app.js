@@ -8,6 +8,11 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 var testAPIRouter = require("./routes/testAPI");
 var curiosidadesRouter= require("./routes/curiosidade");
+var converterRouter= require("./routes/converter");
+var filtrareceitasRouter= require("./routes/filtrareceitas");
+var substitutoRouter= require("./routes/substituto");
+var receitascaloriaRouter= require("./routes/receitascaloria");
+var cors = require("cors");
 
 var app = express();
 
@@ -25,6 +30,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/curiosidades", curiosidadesRouter);
+app.use("/converter", converterRouter);
+app.use("/filtrareceitas", filtrareceitasRouter);
+app.use("/substituto", substitutoRouter);
+app.use("/receitascaloria", receitascaloriaRouter);
 // var port = normalizePort(process.env.PORT || '9000')
 
 // app.set('port', port)
