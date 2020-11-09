@@ -9,39 +9,7 @@ router.get('/', function(req, res) {
   res.render('pesquisa', { title: 'Pesquisar' });
   });
 
-  /* POST  Resposta rapida CALCULAR*/
-// router.post('/buscar', function (req, res) {
-//   var pesquisa = req.body.pesquisa;
-//   console.log(pesquisa);
-  
-// });
-router.get('/buscar/:word',(req, res)=> {
-  const requ = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/quickAnswer");
-  requ.query({
-    "q": req.params.word
-  });
-  requ.headers({
-    "x-rapidapi-key": "a189d94715msh94688240afe7d21p18a442jsn5712d79e456d",
-    "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    "useQueryString": true
-  });
-  requ.end(function (response) {
-    if (response.error) throw new Error(response.error);
-    res.json(response.body);
-    
-  });
-    
-    // res.json(res.body);
-    // res.end();
-  
-      // console.log(req);
-      // var parsedBody = JSON.parse(res)
-      // res.send(parsedBody)
-    
-  // RESPOSTA 
-    
-   
-  });
+
 
 
   router.get('/converter/:ingrediente/:med_dps/:med_antes/:numero',(req, res)=> {
@@ -141,29 +109,32 @@ router.get('/curiosidades', function(req, res) {
   });
   });
 
-// Criar cartão de receita
-router.post('/criareceita', function(req, res) {
-  res.render('criar_cartao_receita');
-  });
-
-router.post('/receitanova', function(req, res) {
+  // Combine receitas com calorias diárias 
+router.get('/receitascaloria/:numerocal/:prazo', function(req, res) {
   var unirest = require("unirest");
 
-  var req = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/trivia/random");
+var requ = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate");
 
-  req.headers({
-    "x-rapidapi-key": "a189d94715msh94688240afe7d21p18a442jsn5712d79e456d",
-    "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    "useQueryString": true
-  });
+requ.query({
+	"targetCalories": req.params.numerocal,
+	"timeFrame": req.params.prazo
+});
+
+requ.headers({
+	"x-rapidapi-key": "a189d94715msh94688240afe7d21p18a442jsn5712d79e456d",
+	"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+	"useQueryString": true
+});
 
 
-  req.end(function (res) {
-    if (res.error) throw new Error(res.error);
+requ.end(function (response) {
+  if (response.error) throw new Error(response.error);
+  res.json(response.body);
+  
+});
+});
 
-    console.log(res.body);
-  });
-  });
+
 
 
 module.exports = router;
