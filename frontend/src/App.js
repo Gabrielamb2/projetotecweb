@@ -1,14 +1,13 @@
 import React from "react";
 import "./App.css";
-import Axios from "axios";
-import Converter from "./components/Converter.js";
+import {Curiosidade} from './components/Curiosidades';
 
 function App() {
   return(
   
   <div>
     <header>
-      <Converter />
+      <Curiosidade />
     </header>
   </div>
 
