@@ -44,43 +44,6 @@ router.get('/buscar/:word',(req, res)=> {
   });
 
 
-  
-
-
-
-  
-    /* POST  CONVERTER*/
-//   router.post('/converter', function (req, res) {
-//     var ingrediente  = req.body.ingre;
-//     var numero  = req.body.valor;
-//     var med_antes  = req.body.medicao_antes;
-//     var med_dps  = req.body.medicao_depois;
-//     console.log(ingrediente)
-//     console.log(numero)
-//     console.log(med_antes)
-//     console.log(med_dps)
-//     var req = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/convert");
-
-//     req.query({
-//       "ingredientName": ingrediente,
-//       "targetUnit": med_dps,
-//       "sourceUnit": med_antes,
-//       "sourceAmount": numero
-//     });
-
-//     req.headers({
-//       "x-rapidapi-key": "a189d94715msh94688240afe7d21p18a442jsn5712d79e456d",
-//       "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-//       "useQueryString": true
-//     });
-
-
-//     req.end(function (res) {
-//       if (res.error) throw new Error(res.error);
-// // RESPOSTA 
-//       console.log(res.body);
-//     });
-//   });
   router.get('/converter/:ingrediente/:med_dps/:med_antes/:numero',(req, res)=> {
     const requ = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/convert");
     requ.query({
@@ -94,6 +57,34 @@ router.get('/buscar/:word',(req, res)=> {
       "x-rapidapi-key": "a189d94715msh94688240afe7d21p18a442jsn5712d79e456d",
       "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       "useQueryString": true
+    });
+
+    requ.end(function (response) {
+      if (response.error) throw new Error(response.error);
+      res.json(response.body);
+      
+    });
+  });
+
+// pesquise receita por nutrie
+  router.get('/filtrareceitas/:min_carb/:min_pro/:max_cal/:max_carb/:max_gor/:max_pro/:min_gor/:min_cal',(req, res)=> {
+    const requ = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByNutrients");
+    requ.query({
+      "minCarbs":req.params.min_carb ,
+    "minProtein":req.params.min_pro ,
+    "maxCalories": req.params.max_cal,
+    "maxCarbs":req.params.max_carb ,
+    "maxFat": req.params.max_gor,
+    "maxProtein": req.params.max_pro,
+    "minFat":req.params.min_gor,
+    "minCalories": req.params.min_cal,
+      
+      
+    });
+    requ.headers({
+      "x-rapidapi-key": "a189d94715msh94688240afe7d21p18a442jsn5712d79e456d",
+    "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    "useQueryString": true
     });
 
     requ.end(function (response) {
