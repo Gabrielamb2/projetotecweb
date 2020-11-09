@@ -94,77 +94,33 @@ router.get('/buscar/:word',(req, res)=> {
     });
   });
 
-// pesquise receita por nutrientes
-router.post('/receitas', function(req, res) {
-  res.render('pesquisa_receitas_nutrientes');
-  });
 
-router.post('/filtrar/receitas/nutrientes', function(req, res) {
-  var min_carb  = req.body.min_carb;
-  var max_carb  = req.body.max_carb;
-  var min_pro  = req.body.min_pro;
-  var max_pro  = req.body.max_pro;
-  var min_cal  = req.body.min_cal;
-  var max_cal  = req.body.max_cal;
-  var min_gor  = req.body.min_gor;
-  var max_gor  = req.body.max_gor;
-
-  var unirest = require("unirest");
-
-  var req = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByNutrients");
-
-  req.query({
-    "minCarbs":min_carb ,
-    "minProtein":min_pro ,
-    "maxCalories": max_cal,
-    "maxCarbs":max_carb ,
-    "maxFat": max_gor,
-    "maxProtein": max_pro,
-    "minFat": min_gor,
-    "minCalories": min_cal,
-  });
-
-  req.headers({
-    "x-rapidapi-key": "a189d94715msh94688240afe7d21p18a442jsn5712d79e456d",
-    "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    "useQueryString": true
-  });
-
-
-  req.end(function (res) {
-    if (res.error) throw new Error(res.error);
-// RESPOSTA
-    console.log(res.body);
-  });
-
-  });
 
 // obtenha substitutos para ingredientes 
-router.post('/ingredientes', function(req, res) {
-  res.render('substituto_ingredientes');
+// router.post('/ingredientes', function(req, res) {
+//   res.render('substituto_ingredientes');
+//   });
+
+router.get('/substituto/:ingrediente', function(req, res) {
+  
+
+  var requ = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/substitutes");
+
+  requ.query({
+    "ingredientName": req.params.ingrediente,
   });
 
-router.post('/substituto/ingredientes', function(req, res) {
-  var ingrediente  = req.body.ingre;
-  var unirest = require("unirest");
-
-  var req = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/substitutes");
-
-  req.query({
-    "ingredientName": ingrediente
-  });
-
-  req.headers({
+  requ.headers({
     "x-rapidapi-key": "a189d94715msh94688240afe7d21p18a442jsn5712d79e456d",
     "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
     "useQueryString": true
   });
 
 
-  req.end(function (res) {
-    if (res.error) throw new Error(res.error);
-// RESPOSTA
-    console.log(res.body);
+  requ.end(function (response) {
+    if (response.error) throw new Error(response.error);
+    res.json(response.body);
+    
   });
   });
 
