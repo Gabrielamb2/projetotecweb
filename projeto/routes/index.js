@@ -96,10 +96,6 @@ router.get('/buscar/:word',(req, res)=> {
 
 
 
-// obtenha substitutos para ingredientes 
-// router.post('/ingredientes', function(req, res) {
-//   res.render('substituto_ingredientes');
-//   });
 
 router.get('/substituto/:ingrediente', function(req, res) {
   
@@ -126,22 +122,22 @@ router.get('/substituto/:ingrediente', function(req, res) {
 
 
 // curiosidades  
-router.post('/curiosidades', function(req, res) {
+router.get('/curiosidades', function(req, res) {
   var unirest = require("unirest");
 
-  var req = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/trivia/random");
+  var requ = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/trivia/random");
 
-  req.headers({
+  requ.headers({
     "x-rapidapi-key": "a189d94715msh94688240afe7d21p18a442jsn5712d79e456d",
     "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
     "useQueryString": true
   });
 
 
-  req.end(function (res) {
-    if (res.error) throw new Error(res.error);
-
-    console.log(res.body);
+  requ.end(function (response) {
+    if (response.error) throw new Error(response.error);
+    res.json(response.body);
+    
   });
   });
 
