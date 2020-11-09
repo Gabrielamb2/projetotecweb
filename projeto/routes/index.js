@@ -134,6 +134,25 @@ router.post('/substituto/ingredientes', function(req, res) {
 
   req.end(function (res) {
     if (res.error) throw new Error(res.error);
+// RESPOSTA
+    console.log(res.body);
+  });
+  });
+
+router.post('/curiosidades', function(req, res) {
+  var unirest = require("unirest");
+
+  var req = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/trivia/random");
+
+  req.headers({
+    "x-rapidapi-key": "a189d94715msh94688240afe7d21p18a442jsn5712d79e456d",
+    "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    "useQueryString": true
+  });
+
+
+  req.end(function (res) {
+    if (res.error) throw new Error(res.error);
 
     console.log(res.body);
   });
