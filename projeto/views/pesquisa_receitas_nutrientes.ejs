@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
+    <h1 class="text-center title-1"> Pesquisa receitas por nutrientes </h1>
+
+    <form action="/filtrar/receitas/nutrientes" method="post">
+        <p>Carboidratos:</p>
+        Minimo:<input type="text" name="min_carb"/>
+        Máximo:<input type="text" name="max_carb"/>
+        <p>Proteina:</p>
+        Minimo:<input type="text" name="min_pro"/>
+        Máximo:<input type="text" name="max_pro"/>
+        <p>Calorias:</p>
+        Minimo:<input type="text" name="min_cal"/>
+        Máximo:<input type="text" name="max_cal"/>
+        <p>Gordura:</p>
+        Minimo:<input type="text" name="min_gor"/>
+        Máximo:<input type="text" name="max_gor"/>
+        <input type="submit" value="Filtrar" />
+    </form>
+</body>
+</html>
