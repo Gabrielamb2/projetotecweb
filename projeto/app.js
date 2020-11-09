@@ -6,6 +6,9 @@ var logger = require('morgan');
 var cors = require('cors');
 
 var indexRouter = require('./routes/index');
+var testAPIRouter = require("./routes/testAPI");
+var curiosidadesRouter= require("./routes/curiosidade");
+
 var app = express();
 
 app.use(cors())
@@ -13,16 +16,18 @@ app.use(cors())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', indexRouter);
+app.use("/testAPI", testAPIRouter);
+app.use("/curiosidades", curiosidadesRouter);
+// var port = normalizePort(process.env.PORT || '9000')
 
-
+// app.set('port', port)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
