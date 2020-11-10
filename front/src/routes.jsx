@@ -13,7 +13,7 @@ export default props => (
 <Switch>
  <Route path='/curiosidades' component={Curiosidades} />
  {/* <Redirect from='*' to='/curiosidades' /> */}
- <Route path='/converter/:ingre' component={Converter} />
+ <Route path='/converter' component={Converter} />
  <Route path='/filtrarreceitas' component={FiltraReceita} />
  <Route path='/receitascaloria' component={ReceitasCalorias} />
  <Route path='/substituto' component={Substituto} />

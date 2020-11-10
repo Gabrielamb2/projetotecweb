@@ -9,7 +9,7 @@ export default class ReceitasCalorias extends Component{
   }
   
   callAPI() {
-    fetch("http://localhost:3000/receitascaloria/:numerocal/:prazo")
+    fetch("http://localhost:3000/receitascaloria/2000/day")
         .then(res => res.text())
         .then(res => this.setState({ apiResponse: res }));
   }

@@ -11,10 +11,13 @@ function App(){
   }
   return(
     <div className="App">
+      <p>Curiosidades sobre comidas</p>
       <form action="/curiosidades">
       <button >curiosidades </button>
       </form>
-     
+      <p></p>
+      <p></p>
+      <p>Conversão de medidas</p>
       <form action="/converter">
         Ingrediente:
         <select name="ingre">
@@ -39,14 +42,48 @@ function App(){
         <button >Converter </button>
     </form>
     {/* <!-- pesquisa receita nutrientes--> */}
-<form action="/receitas" method="post">
-    <p><input type="submit" value="Receitas" /></p>
-</form>
-
+    <p></p>
+    <p></p>
+    <p>Filtrar receitas de acordo com nutrientes</p>
+    <form action="/filtrarreceitas" >
+        <p>Carboidratos:</p>
+        Minimo:<input type="text" name="min_carb"/>
+        Máximo:<input type="text" name="max_carb"/>
+        <p>Proteina:</p>
+        Minimo:<input type="text" name="min_pro"/>
+        Máximo:<input type="text" name="max_pro"/>
+        <p>Calorias:</p>
+        Minimo:<input type="text" name="min_cal"/>
+        Máximo:<input type="text" name="max_cal"/>
+        <p>Gordura:</p>
+        Minimo:<input type="text" name="min_gor"/>
+        Máximo:<input type="text" name="max_gor"/>
+        <input type="submit" value="Filtrar" />
+    </form>
+    <p></p>
+    <p></p>
+    <p>Encontrar ingrediente substituto para:</p>
 {/* <!-- substituto ingredientes--> */}
-<form action="/ingredientes" method="post">
-    <p><input type="submit" value="Ingredientes substituto" /></p>
-</form>
+<form action="/substituto" >
+        <select name="ingre">
+            <option value="flour">flour</option> 
+            <option value="butter">butter</option>
+            <option value="valor3">Valor 3</option>
+        </select>
+        <input type="submit" value="Encontrar ingrediente substituto" />
+    </form>
+    <p> </p>
+    <p> </p>
+    <p>Filtrar receitas por caloria</p>
+    <form action="/receitascaloria" >
+        Calorias:<input type="text" name="min_carb"/>
+        <select name="valor">
+            <option value="Day">day</option> 
+            <option value="butter">butter</option>
+            <option value="valor3">Valor 3</option>
+        </select>
+        <input type="submit" value="Filtrar" />
+    </form>
 
       <Routes/>
     </div>

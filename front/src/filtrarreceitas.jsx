@@ -9,7 +9,7 @@ export default class FiltraReceita extends Component{
   }
   
   callAPI() {
-    fetch("http://localhost:3000/filtrareceitas/:min_carb/:min_pro/:max_cal/:max_carb/:max_gor/:max_pro/:min_gor/:min_cal")
+    fetch("http://localhost:3000/filtrareceitas/2/2/2000/50/50/60/1/20")
         .then(res => res.text())
         .then(res => this.setState({ apiResponse: res }));
   }
