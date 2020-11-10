@@ -1,14 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import React, { Component } from 'react'
 import Curiosidades from './curiosidades'
 import Routes from './routes'
 function App(){
+  var ingrediente = "";
+  function formChanged(){
+    ingrediente = document.getElementsByName("valor");
+  }
   return(
     <div className="App">
-      <button>curiosidades</button>
-      <form >
+      <form action="/curiosidades">
+      <button >curiosidades </button>
+      </form>
+     
+      <form action="/converter">
         Ingrediente:
         <select name="ingre">
             <option value="flour">flour</option> 
@@ -16,7 +23,7 @@ function App(){
             <option value="valor3">Valor 3</option>
         </select>
         Converter:
-        <input type="text" name="valor" id="valor" />
+        <input type="text" name="valor" id="valor" onChange="formChanged()"/>
         <select name="medicao_antes">
             <option value="cups">cups</option> 
             <option value="valor2">Valor 2</option>
@@ -43,6 +50,7 @@ function App(){
 
       <Routes/>
     </div>
+
   )
 }
 export default App;
