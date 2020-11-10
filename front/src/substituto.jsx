@@ -10,6 +10,8 @@ export default class Substituto extends Component{
   
   callAPI() {
     fetch("http://localhost:3000/substituto/flour")
+    // sabemos que deveria ser: http://localhost:3000/:ingrediente
+    // porem não tivemos tempo de pegar os valores da url para passar aqui, desta forma, deixamos alguns valores para mostrar que funciona
         .then(res => res.text())
         .then(res => this.setState({ apiResponse: res }));
   }
